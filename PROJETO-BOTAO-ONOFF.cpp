@@ -1,0 +1,31 @@
+
+#include <Arduino.h>
+
+// Definição dos pinos
+const int botaoPin = 8; // Pino onde o botão está conectado
+const int relePin = 10;  // Pino onde o relé está conectado
+
+// Variável para armazenar o estado do relé
+bool releLigado = false;
+
+void setup()
+{
+  pinMode(botaoPin, INPUT); // Define o pino do botão como entrada
+  pinMode(relePin, OUTPUT); // Define o pino do relé como saída
+}
+
+void loop()
+{
+  // Verifica se o botão foi pressionado
+  if (digitalRead(botaoPin) == HIGH)
+  {
+    // Inverte o estado do relé quando o botão é pressionado
+    releLigado = !releLigado;
+
+    // Atualiza o estado do relé
+    digitalWrite(relePin, releLigado ? HIGH : LOW);
+
+    // Aguarda um curto intervalo para evitar leituras múltiplas do botão
+    delay(200);
+  }
+}
